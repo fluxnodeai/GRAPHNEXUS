@@ -1,0 +1,513 @@
+/* Header Component - CSS Module with Standard CSS */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, rgba(5, 0, 25, 0.98) 0%, rgba(0, 10, 30, 0.95) 30%, rgba(10, 5, 35, 0.98) 70%, rgba(0, 15, 40, 0.95) 100%);
+  backdrop-filter: blur(40px);
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #ff0080, #00d4ff, #39ff14, #ffaa00) 1;
+  box-shadow: 
+    0 20px 60px rgba(0, 212, 255, 0.15),
+    0 8px 32px rgba(255, 0, 128, 0.1),
+    0 4px 16px rgba(57, 255, 20, 0.08);
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    #ff0080 0%, 
+    #ff0080 25%, 
+    #00d4ff 25%, 
+    #00d4ff 50%, 
+    #39ff14 50%, 
+    #39ff14 75%, 
+    #ffaa00 75%, 
+    #ffaa00 100%);
+  opacity: 0.8;
+  animation: neonPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+  0% {
+    opacity: 0.6;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+}
+
+.headerContent {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+/* Logo Styles */
+.logoContainer {
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.logoContainer:hover {
+  transform: scale(1.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logoIcon {
+  position: relative;
+}
+
+.logoSvg {
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logoBrand {
+  font-family: 'Orbitron', 'Audiowide', 'Exo 2', Arial, monospace;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.15em;
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.6),
+    0 0 15px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(0, 212, 255, 0.3);
+  background: linear-gradient(45deg, #ffffff 0%, #f0f8ff 50%, #00d4ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.logoBrand::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  animation: scanline 2s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.logoSubBrand {
+  font-family: 'Orbitron', 'Audiowide', 'Exo 2', Arial, monospace;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #00d4ff;
+  letter-spacing: 0.15em;
+  margin-top: -0.125rem;
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px rgba(0, 212, 255, 0.5),
+    0 0 35px rgba(0, 212, 255, 0.3);
+  background: linear-gradient(45deg, #00d4ff 0%, #66e0ff 50%, #00b3e6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  animation: neonFlicker 4s ease-in-out infinite alternate;
+}
+
+@keyframes neonFlicker {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px rgba(0, 212, 255, 0.5),
+      0 0 35px rgba(0, 212, 255, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 8px currentColor,
+      0 0 12px rgba(0, 212, 255, 0.4),
+      0 0 18px rgba(0, 212, 255, 0.2);
+  }
+}
+
+.logoTagline {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #b8c5d6;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 0.25rem;
+  opacity: 0.9;
+  font-weight: 500;
+  text-shadow: 0 0 3px rgba(184, 197, 214, 0.5);
+}
+
+/* Navigation Styles */
+.nav {
+  display: none;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+  }
+}
+
+/* Community Section */
+.communitySection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.discordButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(114, 137, 218, 0.1);
+  border: 1px solid rgba(114, 137, 218, 0.3);
+  border-radius: 0.5rem;
+  color: #7289da;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.discordButton:hover {
+  background: rgba(114, 137, 218, 0.2);
+  border-color: #7289da;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(114, 137, 218, 0.25);
+}
+
+.discordIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.openSourceBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(57, 255, 20, 0.1);
+  border: 1px solid rgba(57, 255, 20, 0.3);
+  border-radius: 0.5rem;
+  color: #39ff14;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+}
+
+.badgeIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.badgeText {
+  white-space: nowrap;
+}
+
+.githubButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.githubButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.githubButton .githubIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: #b8c5d6;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+  transition: left 0.3s;
+}
+
+.navLink:hover::before {
+  left: 100%;
+}
+
+.navLink:hover {
+  color: #00d4ff;
+  border-color: #00d4ff;
+  background: rgba(0, 212, 255, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+}
+
+.navFeatured {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: #00d4ff;
+  color: #00d4ff;
+}
+
+.navFeatured:hover {
+  background: rgba(0, 212, 255, 0.15);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.navIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: currentColor;
+}
+
+.navText {
+  font-weight: 600;
+}
+
+.navBadge {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #66e0ff 100%);
+  color: #0a0a0f;
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  letter-spacing: 0.05em;
+}
+
+/* CTA Button */
+.ctaContainer {
+  margin-left: 1rem;
+}
+
+.ctaButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #66e0ff 100%);
+  color: #0a0a0f;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.ctaButton:hover::before {
+  left: 100%;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  background: linear-gradient(135deg, #00e6ff 0%, #00b3e6 50%, #66e6ff 100%);
+}
+
+.ctaIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Mobile Menu */
+.mobileToggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  gap: 0.25rem;
+}
+
+@media (min-width: 1024px) {
+  .mobileToggle {
+    display: none;
+  }
+}
+
+.menuLine {
+  width: 1.5rem;
+  height: 2px;
+  background: #00d4ff;
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+
+.mobileToggle:hover .menuLine {
+  background: #0099cc;
+  box-shadow: 0 0 20px currentColor;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .headerContent {
+    padding: 0 1.5rem;
+  }
+  
+  .navLinks {
+    gap: 1.5rem;
+  }
+  
+  .nav {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav,
+  .ctaContainer {
+    display: none;
+  }
+  
+  .logoBrand,
+  .logoSubBrand {
+    font-size: 1.125rem;
+  }
+  
+  .logoTagline {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    padding: 0 1rem;
+    height: 64px;
+  }
+  
+  .logoSvg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .logoBrand,
+  .logoSubBrand {
+    font-size: 1rem;
+  }
+  
+  .logoTagline {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerContent {
+    padding: 0 0.75rem;
+    height: 56px;
+  }
+  
+  .logo {
+    gap: 0.75rem;
+  }
+  
+  .logoSvg {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .logoBrand,
+  .logoSubBrand {
+    font-size: 0.875rem;
+  }
+  
+  .logoTagline {
+    display: none;
+  }
+}

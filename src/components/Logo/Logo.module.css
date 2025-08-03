@@ -1,0 +1,281 @@
+/* Unified Logo Component - Stunning but Not Overwhelming */
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.logoContainer:hover {
+  transform: scale(1.02);
+}
+
+.logoIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoSvg {
+  display: block;
+  filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.logoContainer:hover .logoSvg {
+  filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.5));
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logoBrand {
+  font-family: 'Orbitron', Arial, monospace;
+  font-weight: 900;
+  line-height: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.brandPrimary {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+.brandAccent {
+  color: #00d4ff;
+  text-shadow: 0 0 15px currentColor;
+  animation: brandGlow 3s ease-in-out infinite;
+}
+
+@keyframes brandGlow {
+  0%, 100% { 
+    text-shadow: 0 0 15px currentColor, 0 0 25px currentColor;
+  }
+  50% { 
+    text-shadow: 0 0 25px currentColor, 0 0 45px currentColor;
+  }
+}
+
+.logoTagline {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #b8c5d6;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+  margin-top: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.logoContainer:hover .logoTagline {
+  color: #00d4ff;
+}
+
+/* Size Variants */
+
+/* Small Size - For compact spaces */
+.small .logoSvg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.small .logoBrand {
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.small .logoTagline {
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+}
+
+.small {
+  gap: 0.75rem;
+}
+
+/* Medium Size - Default */
+.medium .logoSvg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.medium .logoBrand {
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.medium .logoTagline {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.medium {
+  gap: 1rem;
+}
+
+/* Large Size - For hero sections */
+.large .logoSvg {
+  width: 4rem;
+  height: 4rem;
+}
+
+.large .logoBrand {
+  font-size: 1.75rem;
+  letter-spacing: 0.05em;
+}
+
+.large .logoTagline {
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+}
+
+.large {
+  gap: 1.25rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .logoContainer {
+    gap: 0.75rem;
+  }
+  
+  .small .logoSvg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .small .logoBrand {
+    font-size: 0.75rem;
+  }
+  
+  .small .logoTagline {
+    font-size: 0.5rem;
+  }
+  
+  .medium .logoSvg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .medium .logoBrand {
+    font-size: 1rem;
+  }
+  
+  .medium .logoTagline {
+    font-size: 0.625rem;
+  }
+  
+  .large .logoSvg {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  
+  .large .logoBrand {
+    font-size: 1.5rem;
+  }
+  
+  .large .logoTagline {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoContainer {
+    gap: 0.5rem;
+  }
+  
+  .small .logoSvg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .small .logoBrand {
+    font-size: 0.625rem;
+  }
+  
+  .small .logoTagline {
+    display: none;
+  }
+  
+  .medium .logoSvg {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .medium .logoBrand {
+    font-size: 0.875rem;
+  }
+  
+  .medium .logoTagline {
+    font-size: 0.5rem;
+  }
+  
+  .large .logoSvg {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .large .logoBrand {
+    font-size: 1.25rem;
+  }
+  
+  .large .logoTagline {
+    font-size: 0.625rem;
+  }
+}
+
+/* Accessibility Support */
+@media (prefers-reduced-motion: reduce) {
+  .logoContainer:hover {
+    transform: none;
+  }
+  
+  .brandAccent {
+    animation: none;
+  }
+  
+  .logoSvg {
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+  }
+  
+  .logoContainer:hover .logoSvg {
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .brandPrimary {
+    color: #ffffff;
+    text-shadow: none;
+  }
+  
+  .brandAccent {
+    color: #00d4ff;
+    text-shadow: none;
+    animation: none;
+  }
+  
+  .logoTagline {
+    color: #ffffff;
+    opacity: 1;
+  }
+  
+  .logoSvg {
+    filter: none;
+  }
+}
+
+/* Focus States for Accessibility */
+.logoContainer:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 4px;
+  border-radius: 0.5rem;
+}
