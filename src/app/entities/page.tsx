@@ -32,22 +32,47 @@ export default function EntitiesPage() {
       try {
         setLoading(true);
         
-        console.log('🧠 Initializing NVIDIA NIM Entity Intelligence...');
-        console.log('📡 Fetching real data from open source APIs...');
+        console.log('🧠 Initializing Entity Intelligence API...');
+        console.log('📡 Connecting to knowledge graph database...');
         
-        // Fetch real data from various open source APIs
-        const realEntities = await realDataFetcher.fetchMixedRealData(25);
+        // Fetch entities from our API endpoint
+        const response = await fetch('/api/entities');
         
-        const entitiesWithIds = realEntities.map((entity, index) => ({
-          ...entity,
-          id: index.toString(),
-          created_at: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString()
-        }));
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         
-        setEntities(entitiesWithIds as Entity[]);
+        const entities = await response.json();
+        
+        // If no entities exist, populate with some sample data
+        if (entities.length === 0) {
+          console.log('📊 Initializing with sample data...');
+          const realEntities = await realDataFetcher.fetchMixedRealData(25);
+          
+          const entitiesWithIds = realEntities.map((entity, index) => ({
+            ...entity,
+            id: index.toString(),
+            created_at: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString()
+          }));
+          
+          setEntities(entitiesWithIds as Entity[]);
+        } else {
+          // Convert API response to Entity format
+          const formattedEntities = entities.map((entity: any) => ({
+            id: entity.id,
+            name: entity.name,
+            type: entity.type,
+            description: entity.properties.description || 'No description available',
+            created_at: new Date().toISOString(),
+            properties: entity.properties
+          }));
+          
+          setEntities(formattedEntities);
+        }
+        
         setLoading(false);
-        console.log(`✅ Entity Intelligence Network: ${entitiesWithIds.length} real entities loaded`);
-        console.log('📊 Data sources: REST Countries, GitHub API, JSONPlaceholder, FakeStore API');
+        console.log(`✅ Entity Intelligence Network: ${entities.length} entities loaded`);
+        console.log('📊 Data source: Knowledge Graph Database');
       } catch (err) {
         console.error('❌ Entity Intelligence Failed:', err);
         setError('Entity Intelligence network offline. Please reconnect.');

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { graphOperations, GraphData } from '@/lib/db/neo4j';
+import { GraphData } from '@/lib/db/neo4j';
 import SimpleGraphVisualization from '@/components/SimpleGraphVisualization';
 import styles from './page.module.css';
 
@@ -29,8 +29,14 @@ export default function GraphPage() {
         setLoading(true);
         setError(null);
         
-        console.log('🔍 Connecting to Neo4j Knowledge Graph...');
-        const data = await graphOperations.getGraphData();
+        console.log('🔍 Connecting to Knowledge Graph API...');
+        const response = await fetch('/api/graph');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data: GraphData = await response.json();
         
         if (data.nodes.length > 0) {
           console.log(`✅ Knowledge Graph Loaded: ${data.nodes.length} entities, ${data.relationships.length} connections`);
@@ -40,8 +46,8 @@ export default function GraphPage() {
           setError('Knowledge graph is empty. Import data or create entities to begin exploration.');
         }
       } catch (err) {
-        console.error('❌ Neo4j Connection Failed:', err);
-        setError(`Graph database connection failed: ${err instanceof Error ? err.message : String(err)}`);
+        console.error('❌ API Connection Failed:', err);
+        setError(`Graph API connection failed: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         setLoading(false);
       }
