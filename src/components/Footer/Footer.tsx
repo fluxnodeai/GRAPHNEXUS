@@ -62,7 +62,7 @@ export default function Footer() {
         <div className={styles.footerBottom}>
           <div className={styles.bottomLeft}>
             <div className={styles.copyright}>
-              © 2024 GraphNexus. All rights reserved.
+              © 2025 GraphNexus. All rights reserved.
             </div>
             <div className={styles.version}>
               v2.1.0 • Powered by NVIDIA NIM, Neo4j, and Supabase
